@@ -10,14 +10,21 @@ const inputPassword = document.getElementById('password')
 
 
 const login = (user) => {
-    buttonAuth.style.display = 'none'
+    if(!inputLogin.value){
+        alert('Введите логин')
+    }
+    else if (!inputPassword.value){
+        alert('Введите пароль')
+    }
+    else{
+        buttonAuth.style.display = 'none'
 
-    buttonOut.style.display = 'block'
-    userName.style.display = 'block'
+        buttonOut.style.display = 'block'
+        userName.style.display = 'block'
 
-    userName.textContent = user.login
-    modalAuth.style.display = 'none'
-
+        userName.textContent = user.login
+        modalAuth.style.display = 'none'
+    }
 }
 const loginOut = () => {
     buttonAuth.style.display = 'flex'
@@ -50,6 +57,6 @@ logInForm.addEventListener('submit', (event) => {
     login(user)
 })
 
-if(localStorage.getItem('user')){
+if (localStorage.getItem('user')) {
     login(JSON.parse(localStorage.getItem(user)))
 }
